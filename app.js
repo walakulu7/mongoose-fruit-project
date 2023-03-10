@@ -7,7 +7,11 @@ mongoose.connect("mongodb://127.0.0.1:27017/fruitsDB", {useNewUrlParser: true })
 
 const fruitSchema = new mongoose.Schema({
     name: String,
-    rating: Number,
+    rating: {
+        type: Number,
+        min: 1,
+        max: 10
+    },
     review: String
 });
 
@@ -15,11 +19,11 @@ const FruitModel = mongoose.model("Fruit", fruitSchema);
 
 const fruit = new FruitModel({
     name: "Apple",
-    rating: 7,
+    rating: 11,
     review: "Pretty solid as a fruit."
 });
 
-// fruit.save();
+fruit.save();
 
 const personSchema = new mongoose.Schema({
     name: String,
